@@ -88,7 +88,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
             }
 
             // Notify the Desktop via BUS that a file is ready for printing
-            callback.call(null);
+            return callback(null);
         }
     });
 };
