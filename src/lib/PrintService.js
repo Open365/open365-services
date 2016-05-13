@@ -17,17 +17,14 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var Eyeosfs = require('eyeos-fs');
-var nativeFs = require('fs');
+var fs = require('fs');
 var path = require('path');
-var ps = require('path').sep;
 var PdfCodeInjector = require('../lib/pdfCodeInjector');
 var logger = require('log2out').getLogger('PrintService');
 
-function PrintService (file, printFolder, eyeosfs, pdfCodeInjector) {
+function PrintService (file, printFolder, pdfCodeInjector) {
     logger.debug('Initializing print service...');
 
-    this.eyeosfs = eyeosfs || new Eyeosfs();
     this.file = file;
     this.printFolder = printFolder || '/mnt/eyeos/print';
     this.pdfCodeInjector = pdfCodeInjector || new PdfCodeInjector(file);
@@ -66,7 +63,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
 
     // Create the print dir if it doesnt' exist
     try {
-        this.eyeosfs.mkdirpSync(this.printFolder);
+        fs.mkdirpSync(this.printFolder);
     } catch (err) {
         logger.error('Error creating folders: ', err);
         return;
@@ -76,7 +73,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
     var printFilePath = path.join(self.printFolder, filename);
 
     // Move the document to the print folder
-    self.eyeosfs.rename(this.file, printFilePath, function (err) {
+    fs.rename(this.file, printFilePath, function (err) {
         if (err) {
             logger.error("Can't move file " + filename + " to print folder " + self.printFolder, err);
         } else {
@@ -84,7 +81,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
 
             try {
                 logger.debug("Changing file permission.");
-                nativeFs.chmodSync(printFilePath, 0666);
+                fs.chmodSync(printFilePath, 666);
             } catch (err) {
                 logger.error("Error changing permissions: ", err);
                 return;
