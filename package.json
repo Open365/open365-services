@@ -1,21 +1,20 @@
 {
   "name": "open365-services",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Services for Open365 Docker App Image",
   "scripts": {
     "test": "./node_modules/.bin/mocha -u tdd src/test"
   },
   "dependencies": {
     "async": "1.5.2",
-    "eyeos-stomp": "0.1.10",
-    "log2out": "0.0.18",
-    "eyeos-fs": "*"
+    "eyeos-stomp": "*",
+    "log2out": "*"
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "eyeos-component-tests": "0.0.46",
-    "eyeos-gruntfile": "0.0.265",
-    "eyeos-hippie": "0.0.39",
+    "eyeos-component-tests": "*",
+    "eyeos-gruntfile": "*",
+    "eyeos-hippie": "*",
     "grunt-init": "0.3.2",
     "grunt-mocha-test": "0.11.0",
     "grunt-shell": "1.2.1",
