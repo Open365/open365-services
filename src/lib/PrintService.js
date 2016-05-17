@@ -21,6 +21,7 @@ var fs = require('fs');
 var path = require('path');
 var PdfCodeInjector = require('../lib/pdfCodeInjector');
 var logger = require('log2out').getLogger('PrintService');
+var mkdirp = require('mkdirp');
 
 function PrintService (file, printFolder, pdfCodeInjector) {
     logger.debug('Initializing print service...');
@@ -63,7 +64,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
 
     // Create the print dir if it doesnt' exist
     try {
-        fs.mkdirpSync(this.printFolder);
+        mkdirp.sync(this.printFolder);
     } catch (err) {
         logger.error('Error creating folders: ', err);
         return;
