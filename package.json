@@ -1,6 +1,6 @@
 {
   "name": "open365-services",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Services for Open365 Docker App Image",
   "scripts": {
     "test": "./node_modules/.bin/mocha -u tdd src/test"
@@ -8,7 +8,8 @@
   "dependencies": {
     "async": "1.5.2",
     "eyeos-stomp": "*",
-    "log2out": "*"
+    "log2out": "*",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "chai": "3.5.0",
