@@ -18,6 +18,7 @@
 */
 
 var fs = require('fs');
+var fsExtra = require('fs-extra');
 var path = require('path');
 var PdfCodeInjector = require('../lib/pdfCodeInjector');
 var logger = require('log2out').getLogger('PrintService');
@@ -64,7 +65,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
 
     // Create the print dir if it doesnt' exist
     try {
-        mkdirp.sync(this.printFolder);
+        fsExtra.mkdirpSync(this.printFolder);
     } catch (err) {
         logger.error('Error creating folders: ', err);
         return;
@@ -74,7 +75,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
     var printFilePath = path.join(self.printFolder, filename);
 
     // Move the document to the print folder
-    fs.rename(this.file, printFilePath, function (err) {
+    fsExtra.move(this.file, printFilePath, function (err) {
         if (err) {
             logger.error("Can't move file " + filename + " to print folder " + self.printFolder, err);
         } else {
