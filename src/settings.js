@@ -54,7 +54,8 @@ var settings = {
 	printSettings: {
 		folder: '/mnt/eyeos/print/',
 		cleanTimer: 300000,
-		user: process.env.EYEOS_UNIX_USER || 'user'
+		user: process.env.EYEOS_UNIX_USER || 'user',
+		tmp_folder: process.env.EYEOS_PRINT_FOLDER || '/tmp/'
 	},
 
 	connectionFilepath: process.env.CONNECTION_FILEPATH || '/tmp/connected',

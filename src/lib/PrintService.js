@@ -83,7 +83,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
 
             try {
                 logger.debug("Changing file permission.");
-                fs.chmodSync(printFilePath, 666);
+                fs.chmodSync(printFilePath, 0666);
             } catch (err) {
                 logger.error("Error changing permissions: ", err);
                 return;

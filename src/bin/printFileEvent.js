@@ -28,8 +28,7 @@ var file = process.argv[2];
 var printService = new PrintService(file, printSettings.folder);
 
 // Event / Bus settings
-var userHomeDir = '/home/'+ printSettings.user +'/';
-var path = 'print:///' + file.replace(userHomeDir, "");
+var path = 'print:///' + file.replace(printSettings.tmp_folder, "");
 var event = new Event("printFile", messageTypes.print, {path: path});
 
 // Send event notification to throu the BUS
