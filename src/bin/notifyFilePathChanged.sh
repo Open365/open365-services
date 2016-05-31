@@ -2,6 +2,6 @@
 
 THISDIR="$(cd "$(dirname "$0")" && pwd)"
 EVENT_NAME="filePathChange"
-FILE_PATH=$2
+FILE_PATH=$1
 
 "$THISDIR"/sendFileEvent.sh "$EVENT_NAME" "$FILE_PATH"
