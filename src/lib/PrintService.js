@@ -75,7 +75,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
     var printFilePath = path.join(self.printFolder, filename);
 
     // Move the document to the print folder
-    fsExtra.move(this.file, printFilePath, function (err) {
+    fsExtra.move(this.file, printFilePath, {clobber:true}, function (err) {
         if (err) {
             logger.error("Can't move file " + filename + " to print folder " + self.printFolder, err);
         } else {
@@ -83,7 +83,7 @@ PrintService.prototype.moveFileToPrintingFolder = function (callback) {
 
             try {
                 logger.debug("Changing file permission.");
-                fs.chmodSync(printFilePath, 666);
+                fs.chmodSync(printFilePath, 0666);
             } catch (err) {
                 logger.error("Error changing permissions: ", err);
                 return;
