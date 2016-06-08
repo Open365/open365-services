@@ -39,6 +39,10 @@ if (path.indexOf(process.env.HOME) === 0) {
 		// This solves the bugfix to open files from dolphin
 		path = "files/" + path;
 	}
+	if (eventName === "filePathChange") {
+		// Remove '/' character
+		path = path.substr(1);
+	}
 }
 
 var event = new Event(eventName, messageTypes.file, {path: path});

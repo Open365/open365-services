@@ -1,6 +1,6 @@
 {
   "name": "open365-services",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Services for Open365 Docker App Image",
   "scripts": {
     "test": "./node_modules/.bin/mocha -u tdd src/test"
